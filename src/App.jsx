@@ -1,29 +1,40 @@
-import { useState } from 'react'
-import { Home } from './components/Home'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HealthCare } from './components/HealthCare';
-import { Automobiles } from './components/Automobiles';
-import { StudentDetails } from './components/StudentDetails';
-
+import { useState } from "react";
+import { Home } from "./components/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { HealthCare } from "./components/HealthCare";
+import { Automobiles } from "./components/Automobiles";
+import { StudentDetails } from "./components/StudentDetails";
+import { LoginPage } from "./components/LoginPage";
+import { NavBar } from "./components/NavBar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase/FirebaseInit";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      window.location.pathname = "/signin";
+    });
+  };
 
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route index element={<Home />} />
-          <Route path="healthcare" element={<HealthCare />} />
-          <Route path="automobiles" element={<Automobiles />} />
-          <Route path="studentdetails" element={<StudentDetails />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <Router>
+        <NavBar isAuth={isAuth} signUserOut={signUserOut} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/healthcare" element={<HealthCare />} />
+          <Route path="/automobiles" element={<Automobiles />} />
+          <Route path="/studentdetails" element={<StudentDetails />} />
+          <Route path="/login" element={<LoginPage setIsAuth={setIsAuth} />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
