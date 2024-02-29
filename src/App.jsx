@@ -26,9 +26,9 @@ function App() {
       <Router>
         <NavBar isAuth={isAuth} signUserOut={signUserOut} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/healthcare" element={<HealthCare />} />
-          <Route path="/automobiles" element={<Automobiles />} />
+          <Route path="/" Component={Home} />
+          <Route path="/healthcare" Component={HealthCare} />
+          <Route path="/automobiles" Component={Automobiles} />
           <Route path="/studentdetails" element={<StudentDetails />} />
           <Route path="/login" element={<LoginPage setIsAuth={setIsAuth} />} />
         </Routes>
