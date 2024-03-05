@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import "../Styles/FormInput.scss";
+
 
 export function Automobiles() {
   const [file, setFile] = useState();

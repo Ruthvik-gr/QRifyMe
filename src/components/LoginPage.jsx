@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { auth, provider } from "../firebase/FirebaseInit";
-import { signInWithPopup, onAuthStateChanged,GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 export const LoginPage = ({ setIsAuth }) => {

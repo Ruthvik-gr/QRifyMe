@@ -1,16 +1,22 @@
 .main {
-    padding: 0px 10px 0px 0px;
-    > .select {
-      padding: 5px;
-      margin-bottom: 2%;
-      border-radius: 3px;
-    }
-  
-    > .Uploadimage {
-      padding-bottom: 2%;
-    }
-    > .form-outline .form-control ~ .form-label {
-      color: white;
-    }
+  width: 100vw;
+  height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+
+  >.PlusBtn {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    border-radius: 20%;
   }
-  
+
+  >.SubmitBtn {
+    position: absolute;
+    width: fit-content;
+    bottom: 10%;
+    right: 10%;
+  }
+
+
+}

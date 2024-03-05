@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "../Styles/FormInput.scss";
 
 // HealthCare component representing a single file input
 export const HealthCare = () => {
@@ -33,7 +35,8 @@ export const HealthCare = () => {
   };
 
   return (
-    <>
+    <div className="main">
+      <h1>HealthCare</h1>
       <div>
         {fileInputs.map((input, index) => (
           <div key={index}>
@@ -55,12 +58,10 @@ export const HealthCare = () => {
           </div>
         ))}
       </div>
-      <button
-        onClick={handleAddFileInput}
-        style={{ color: "black", cursor: "pointer", marginTop: "10px" }}
-      >
+      <Button className="PlusBtn" onClick={handleAddFileInput}>
         +
-      </button>
-    </>
+      </Button>
+      <Button className="SubmitBtn" as="input" type="submit" value="Submit" />{" "}
+    </div>
   );
 };
