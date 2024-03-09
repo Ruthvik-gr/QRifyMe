@@ -33,6 +33,9 @@ export const NavBar = ({ isAuth, signUserOut }) => (
               <Nav.Link as={Link} to="/healthcare">
                 Health Care
               </Nav.Link>
+              {/* <Nav.Link as={Link} to="/Scanner">
+                Scanner
+              </Nav.Link> */}
             </>
           ) : null}
         </Nav>

@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getAuth } from "firebase/auth";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  listAll,
+  getDownloadURL,
+} from "firebase/storage";
 import Button from "react-bootstrap/Button";
+// import {ImageGallery} from "./ImageGallery";
 import "../Styles/FormInput.scss";
+import QRCode from 'qrcode.react';
 
-// HealthCare component representing a single file input
+
 export const HealthCare = () => {
   const [fileInputs, setFileInputs] = useState([]);
+  const [qrCodeData, setQrCodeData] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   // Handler for file input change
   const handleFileChange = (index, event) => {
@@ -34,6 +49,36 @@ export const HealthCare = () => {
     setFileInputs((prevInputs) => [...prevInputs, null]);
   };
 
+  // Handler for submitting the form and uploading files to Firebase Storage
+  const handleUpload = async () => {
+    if (user) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `/Studentdetails/${user.uid}`);
+
+      // Loop through fileInputs and upload each file
+      for (const input of fileInputs) {
+        if (input && input.file) {
+          const fileRef = ref(storageRef, input.file.name);
+          await uploadBytes(fileRef, input.file);
+        }
+      }
+
+      console.log("Files uploaded to Firebase Storage!");
+
+      // Generate QR code data
+      const files = await listAll(storageRef);
+      const newImageUrls = await Promise.all(
+        files.items.map((item) => getDownloadURL(item))
+      );
+      setQrCodeData(JSON.stringify(newImageUrls));
+      setImageUrls(newImageUrls); // Set the image URLs for later use
+    } else {
+      console.error("User not authenticated.");
+    }
+  };
+
+  // ... (rest of the code)
+
   return (
     <div className="main">
       <h1>HealthCare</h1>
@@ -61,7 +106,20 @@ export const HealthCare = () => {
       <Button className="PlusBtn" onClick={handleAddFileInput}>
         +
       </Button>
-      <Button className="SubmitBtn" as="input" type="submit" value="Submit" />{" "}
+      <Button
+        className="SubmitBtn"
+        as="input"
+        type="submit"
+        value="Submit"
+        onClick={handleUpload}
+      />
+      {qrCodeData && (
+        <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+          <h2>QR Code:</h2>
+          <QRCode value={qrCodeData} />
+        </div>
+      )}
+      {/* {imageUrls.length > 0 && <ImageGallery imageUrls={imageUrls} />} */}
     </div>
   );
 };
