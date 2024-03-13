@@ -191,8 +191,8 @@ export const Automobiles = () => {
       // Loop through fileInputs and upload each file
       for (const input of fileInputs) {
         if (input && input.file) {
-          // Handle file names with spaces
-          const fileName = input.file.name.replace(/\s/g, "_");
+          // Handle file names with spaces and special characters
+          const fileName = input.file.name.replace(/\s/g, "_").replace(/[^\w\s]/gi, "");
           const fileRef = ref(storageRef, fileName);
 
           await uploadBytes(fileRef, input.file);
@@ -208,17 +208,13 @@ export const Automobiles = () => {
       );
       setQrCodeData(JSON.stringify(newImageUrls));
 
-      // Generate a link with the QR code data
-      const qrCodeLink = `${window.location.origin}/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`;
-
-      console.log("Scan this link on the scanning device:", qrCodeLink);
-
-      // Navigate to the generated link
-      window.location.href = qrCodeLink;
+      // Generate a link with the QR code data and navigate
+      navigate(`/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
     } else {
       console.error("User not authenticated.");
     }
   };
+
   return (
     <div className="main">
       <h1>Automobiles</h1>
@@ -262,3 +258,4 @@ export const Automobiles = () => {
     </div>
   );
 };
+
