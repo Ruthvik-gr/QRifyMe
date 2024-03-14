@@ -183,7 +183,7 @@ export const Studentdetails = () => {
       const newImageUrls = await Promise.all(
         files.items.map((item) => getDownloadURL(item))
       );
-      setQrCodeData(`/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
+      setQrCodeData(`https://qrifyme.netlify.app/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
       setImageUrls(newImageUrls);
     } else {
       console.error("User not authenticated.");
