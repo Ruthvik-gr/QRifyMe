@@ -32,7 +32,7 @@ function App() {
           <Route path="/healthcare" Component={HealthCare} />
           <Route path="/automobiles" Component={Automobiles} />
           <Route path="/studentdetails" Component={Studentdetails} />
-          <Route path="/imagegallery" element={<ImageGallery />} />
+          <Route path="/imagegallery" Component={ImageGallery} />
           <Route path="/login" element={<LoginPage setIsAuth={setIsAuth} />} />
 
         </Routes>
