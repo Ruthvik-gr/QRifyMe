@@ -37,7 +37,6 @@
 
 
 
-
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -71,23 +70,19 @@ export const ImageGallery = () => {
     <div className="image-gallery">
       <h1>Image Gallery</h1>
       {imageUrls.length > 0 ? (
-        imageUrls.map((url, index) => {
-          // Extract filename from URL
-          const filename = url.split("/").pop();
-          // Encode filename
-          const encodedFilename = encodeURIComponent(filename);
-          // Construct URL with encoded filename
-          const imageUrl = `https://firebasestorage.googleapis.com/v0/b/qrifyme-e45a9.appspot.com/o/Studentdetails/6gLETSkvbDa7WlWU83CSXRJtkdu1/${encodedFilename}?alt=media`;
-
-          return (
-            <img
-              key={index}
-              src={imageUrl}
-              alt={`Image ${index + 1}`}
-              onError={(e) => { console.error('Error loading image:', e); }}
-            />
-          );
-        })
+        <div className="image-container">
+          {imageUrls.map((filename, index) => {
+            const imageUrl = `https://firebasestorage.googleapis.com/v0/b/gs://qrifyme-e45a9.appspot.com/o/Studentdetails/6gLETSkvbDa7WlWU83CSXRJtkdu1/${encodeURIComponent(filename)}?alt=media`;
+            return (
+              <img
+                key={index}
+                src={imageUrl}
+                alt={`Image ${index + 1}`}
+                className="gallery-image"
+              />
+            );
+          })}
+        </div>
       ) : (
         <p>No images to display.</p>
       )}
