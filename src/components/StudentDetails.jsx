@@ -59,6 +59,7 @@ export const Studentdetails = () => {
       );
       setQrCodeData(`https://qrifyme.netlify.app/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
       setImageUrls(newImageUrls);
+      console.log(newImageUrls)
     } else {
       console.error("User not authenticated.");
     }
