@@ -72,7 +72,7 @@ export const ImageGallery = () => {
       {imageUrls.length > 0 ? (
         <div className="image-container">
           {imageUrls.map((filename, index) => {
-            const imageUrl = `https://firebasestorage.googleapis.com/v0/b/gs://qrifyme-e45a9.appspot.com/o/Studentdetails/6gLETSkvbDa7WlWU83CSXRJtkdu1/${encodeURIComponent(filename)}?alt=media`;
+            const imageUrl = `https://firebasestorage.googleapis.com/v0/b/qrifyme-e45a9.appspot.com/o/Studentdetails/6gLETSkvbDa7WlWU83CSXRJtkdu1/${encodeURIComponent(filename)}?alt=media`;
             return (
               <img
                 key={index}
