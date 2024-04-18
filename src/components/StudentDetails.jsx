@@ -41,6 +41,28 @@ export const Studentdetails = () => {
   };
 
   // Handler for submitting the form and uploading files to Firebase Storage
+  // const handleUpload = async () => {
+  //   if (user) {
+  //     const storage = getStorage();
+  //     const storageRef = ref(storage, `/Studentdetails/${user.uid}`);
+  //     for (const input of fileInputs) {
+  //       if (input && input.file) {
+  //         const fileRef = ref(storageRef, input.file.name);
+  //         await uploadBytes(fileRef, input.file);
+  //       }
+  //     }
+  //     console.log("Files uploaded to Firebase Storage!");
+  //     const files = await listAll(storageRef);
+  //     const newImageUrls = await Promise.all(
+  //       files.items.map((item) => getDownloadURL(item))
+  //     );
+  //     setQrCodeData(`http://localhost:5173/imagegallery?data=${JSON.stringify(newImageUrls)}`);
+  //     setImageUrls(newImageUrls);
+  //     console.log(newImageUrls);
+  //   } else {
+  //     console.error("User not authenticated.");
+  //   }
+  // };
 
   const handleUpload = async () => {
     if (user) {
@@ -57,40 +79,19 @@ export const Studentdetails = () => {
       const newImageUrls = await Promise.all(
         files.items.map((item) => getDownloadURL(item))
       );
-      setQrCodeData(`https://qrifyme.netlify.app/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
+      const encodedImageUrls = newImageUrls.map((url) =>
+        encodeURIComponent(url)
+      );
+      setQrCodeData(
+        `http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+      );
       setImageUrls(newImageUrls);
-      console.log(newImageUrls)
+      console.log(newImageUrls);
     } else {
       console.error("User not authenticated.");
     }
   };
 
-  // const handleUpload = async () => {
-  //   if (user) {
-  //     const storage = getStorage();
-  //     const storageRef = ref(storage, `/Studentdetails/${user.uid}/uploadedImages`); // Update the storage reference path
-
-  //     // Loop through fileInputs and upload each file
-  //     for (const input of fileInputs) {
-  //       if (input && input.file) {
-  //         const fileRef = ref(storageRef, input.file.name);
-  //         await uploadBytes(fileRef, input.file);
-  //       }
-  //     }
-
-  //     console.log("Files uploaded to Firebase Storage!");
-
-  //     // Retrieve the image URLs
-  //     const files = await listAll(storageRef);
-  //     const newImageUrls = await Promise.all(
-  //       files.items.map((item) => getDownloadURL(item))
-  //     );
-  //     setQrCodeData(`https://qrifyme.netlify.app/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
-  //     setImageUrls(newImageUrls);
-  //   } else {
-  //     console.error("User not authenticated.");
-  //   }
-  // };
 
 
   return (
