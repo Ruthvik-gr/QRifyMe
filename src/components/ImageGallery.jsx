@@ -13,7 +13,14 @@ export const ImageGallery = () => {
         console.log("dataParam:", dataParam);
 
         // Assuming dataParam is trustworthy and sanitized
-        setImageUrls(dataParam.split(","));
+        const urls = dataParam
+          .slice(1, -1) // Remove enclosing square brackets (if present)
+          .split(",") // Split by commas
+          .map((url) => url.trim()) // Trim leading/trailing whitespace
+          .filter((url) => url.length > 0); // Filter out empty strings
+
+        setImageUrls(urls);
+        console.log("imageUrls:", imageUrls); // Log for verification
       } catch (error) {
         console.error("Error fetching image data:", error);
       }
@@ -28,9 +35,14 @@ export const ImageGallery = () => {
         imageUrls.map((imageUrl, index) => (
           <div key={index} className="image-container">
             <img
-              src={imageUrl} // Directly use dataParam values
+              src={imageUrl}
               alt={`Image ${index + 1}`}
               className="gallery-image"
+              onError={(event) => {
+                // Optional error handling for image loading issues
+                console.error("Error loading image:", imageUrl);
+                event.target.src = "fallback-image.png"; // Set a fallback image on error (optional)
+              }}
             />
           </div>
         ))
