@@ -83,7 +83,7 @@ export const Studentdetails = () => {
         encodeURIComponent(url)
       );
       setQrCodeData(
-        `http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+        `https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
       );
       setImageUrls(newImageUrls);
       console.log(newImageUrls);
