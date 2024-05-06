@@ -1,4 +1,3 @@
-// // Studentdetails.js
 // import React, { useState } from "react";
 // import { getAuth } from "firebase/auth";
 // import {
@@ -9,15 +8,14 @@
 //   getDownloadURL,
 // } from "firebase/storage";
 // import { useNavigate } from "react-router-dom";
-// import Button from "react-bootstrap/Button";
 // import QRCode from 'qrcode.react';
-// import { ImageGallery } from "./ImageGallery"
+// import Button from "react-bootstrap/Button";
+// import "../Styles/FormInput.scss";
 
 // export const Automobiles = () => {
 //   const [fileInputs, setFileInputs] = useState([]);
 //   const [qrCodeData, setQrCodeData] = useState(null);
 //   const [imageUrls, setImageUrls] = useState([]);
-
 //   const auth = getAuth();
 //   const user = auth.currentUser;
 //   const navigate = useNavigate();
@@ -25,21 +23,13 @@
 //   // Handler for file input change
 //   const handleFileChange = (index, event) => {
 //     const file = event.target.files[0];
-
-//     // Handle file change logic here
 //     console.log(`File ${index + 1} selected:`, file);
-
-//     // Read the file and update state with a preview URL
 //     const reader = new FileReader();
 //     reader.onload = () => {
 //       const updatedInputs = [...fileInputs];
-//       updatedInputs[index] = {
-//         file: file,
-//         previewURL: reader.result,
-//       };
+//       updatedInputs[index] = { file: file, previewURL: reader.result };
 //       setFileInputs(updatedInputs);
 //     };
-
 //     if (file) {
 //       reader.readAsDataURL(file);
 //     }
@@ -50,36 +40,38 @@
 //     setFileInputs((prevInputs) => [...prevInputs, null]);
 //   };
 
-//   // Handler for submitting the form and uploading files to Firebase Storage
 //   const handleUpload = async () => {
 //     if (user) {
 //       const storage = getStorage();
-//       const storageRef = ref(storage, `/Studentdetails/${user.uid}`);
-
-//       // Loop through fileInputs and upload each file
+//       const storageRef = ref(storage, `/Automobile/${user.uid}`);
 //       for (const input of fileInputs) {
 //         if (input && input.file) {
 //           const fileRef = ref(storageRef, input.file.name);
 //           await uploadBytes(fileRef, input.file);
 //         }
 //       }
-
 //       console.log("Files uploaded to Firebase Storage!");
-
-//       // Generate QR code data
 //       const files = await listAll(storageRef);
 //       const newImageUrls = await Promise.all(
 //         files.items.map((item) => getDownloadURL(item))
 //       );
-//       setQrCodeData(JSON.stringify(newImageUrls));
-//       setImageUrls(newImageUrls); // Set the image URLs for later use
+//       const encodedImageUrls = newImageUrls.map((url) =>
+//         encodeURIComponent(url)
+//       );
+//       setQrCodeData(
+//         //`https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
+//         `http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+//       );
+//       setImageUrls(newImageUrls);
+//       console.log(newImageUrls);
+//       console.log(qrCodeData)
 
-//       // After uploading, navigate to the ImageGallery component
-//       navigate("/imagegallery", { state: { imageUrls: newImageUrls } });
 //     } else {
 //       console.error("User not authenticated.");
 //     }
 //   };
+
+
 
 //   return (
 //     <div className="main">
@@ -127,13 +119,7 @@
 
 
 
-
-
-
-
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import {
   getStorage,
@@ -143,13 +129,14 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import QRCode from 'qrcode.react';
+import Button from "react-bootstrap/Button";
+import "../Styles/FormInput.scss";
 
 export const Automobiles = () => {
   const [fileInputs, setFileInputs] = useState([]);
   const [qrCodeData, setQrCodeData] = useState(null);
-
+  const [imageUrls, setImageUrls] = useState([]);
   const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
@@ -157,21 +144,13 @@ export const Automobiles = () => {
   // Handler for file input change
   const handleFileChange = (index, event) => {
     const file = event.target.files[0];
-
-    // Handle file change logic here
     console.log(`File ${index + 1} selected:`, file);
-
-    // Read the file and update state with a preview URL
     const reader = new FileReader();
     reader.onload = () => {
       const updatedInputs = [...fileInputs];
-      updatedInputs[index] = {
-        file: file,
-        previewURL: reader.result,
-      };
+      updatedInputs[index] = { file: file, previewURL: reader.result };
       setFileInputs(updatedInputs);
     };
-
     if (file) {
       reader.readAsDataURL(file);
     }
@@ -182,38 +161,37 @@ export const Automobiles = () => {
     setFileInputs((prevInputs) => [...prevInputs, null]);
   };
 
-  // Handler for submitting the form and uploading files to Firebase Storage
   const handleUpload = async () => {
     if (user) {
       const storage = getStorage();
-      const storageRef = ref(storage, `/Studentdetails/${user.uid}`);
-
-      // Loop through fileInputs and upload each file
+      const storageRef = ref(storage, `/Automobile/${user.uid}`);
       for (const input of fileInputs) {
         if (input && input.file) {
-          // Handle file names with spaces and special characters
-          const fileName = input.file.name.replace(/\s/g, "_").replace(/[^\w\s]/gi, "");
-          const fileRef = ref(storageRef, fileName);
-
+          const fileRef = ref(storageRef, input.file.name);
           await uploadBytes(fileRef, input.file);
         }
       }
-
       console.log("Files uploaded to Firebase Storage!");
-
-      // Generate QR code data
       const files = await listAll(storageRef);
       const newImageUrls = await Promise.all(
         files.items.map((item) => getDownloadURL(item))
       );
-      setQrCodeData(JSON.stringify(newImageUrls));
-
-      // Generate a link with the QR code data and navigate
-      navigate(`/imagegallery?data=${encodeURIComponent(JSON.stringify(newImageUrls))}`);
+      const encodedImageUrls = newImageUrls.map((url) =>
+        encodeURIComponent(url)
+      );
+      setQrCodeData(
+        //`https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
+        `http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+      );
+      setImageUrls(newImageUrls);
     } else {
       console.error("User not authenticated.");
     }
   };
+
+  useEffect(() => {
+    console.log("qrCodeData:", qrCodeData);
+  }, [qrCodeData]);
 
   return (
     <div className="main">
@@ -258,4 +236,3 @@ export const Automobiles = () => {
     </div>
   );
 };
-

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import '../Styles/imagegallery.scss'
 export const ImageGallery = () => {
   const location = useLocation();
   const [imageUrls, setImageUrls] = useState([]);
@@ -29,11 +29,11 @@ export const ImageGallery = () => {
   }, [location.search]);
 
   return (
-    <div className="image-gallery">
+    <div className="imagegallery">
       <h1>Image Gallery</h1>
       {imageUrls.length > 0 ? (
         imageUrls.map((imageUrl, index) => (
-          <div key={index} className="image-container">
+          <div key={index} className="imagecontainer">
             <img
               src={imageUrl}
               alt={`Image ${index + 1}`}

@@ -1,0 +1,20 @@
+.imagegallery {
+  display: flex;
+  flex-wrap: wrap; // Allow images to wrap to the next line if needed
+  justify-content: center; // Center the images horizontally within the container
+  align-items: center; // Center the images vertically within the container
+
+  .imagecontainer {
+    width: 200px; // Fixed width for each image container
+    height: 200px; // Fixed height for each image container
+    margin: 10px; // Margin between each image container
+    display: flex; // Use flexbox to center the image horizontally and vertically
+    justify-content: center; // Center the image horizontally
+    align-items: center; // Center the image vertically
+
+    img {
+      max-width: 100%; // Make the image fill the container horizontally while maintaining aspect ratio
+      max-height: 100%; // Make the image fill the container vertically while maintaining aspect ratio
+    }
+  }
+}
