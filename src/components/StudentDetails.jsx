@@ -60,8 +60,9 @@ export const Studentdetails = () => {
                 encodeURIComponent(url)
             );
             setQrCodeData(
-                'https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]'
+                `https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
                 //`http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+                
             );
             setImageUrls(newImageUrls);
             console.log(newImageUrls);
