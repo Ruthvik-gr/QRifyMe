@@ -8,37 +8,28 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import Button from "react-bootstrap/Button";
-// import {ImageGallery} from "./ImageGallery";
 import "../Styles/FormInput.scss";
-import QRCode from 'qrcode.react';
-
+import QRCode from "qrcode.react";
+import { useNavigate } from "react-router-dom";
 
 export const HealthCare = () => {
   const [fileInputs, setFileInputs] = useState([]);
   const [qrCodeData, setQrCodeData] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-
   const auth = getAuth();
   const user = auth.currentUser;
+  const navigate = useNavigate();
 
   // Handler for file input change
   const handleFileChange = (index, event) => {
     const file = event.target.files[0];
-
-    // Handle file change logic here
     console.log(`File ${index + 1} selected:`, file);
-
-    // Read the file and update state with a preview URL
     const reader = new FileReader();
     reader.onload = () => {
       const updatedInputs = [...fileInputs];
-      updatedInputs[index] = {
-        file: file,
-        previewURL: reader.result,
-      };
+      updatedInputs[index] = { file: file, previewURL: reader.result };
       setFileInputs(updatedInputs);
     };
-
     if (file) {
       reader.readAsDataURL(file);
     }
@@ -49,35 +40,38 @@ export const HealthCare = () => {
     setFileInputs((prevInputs) => [...prevInputs, null]);
   };
 
-  // Handler for submitting the form and uploading files to Firebase Storage
+
   const handleUpload = async () => {
     if (user) {
       const storage = getStorage();
-      const storageRef = ref(storage, `/Studentdetails/${user.uid}`);
-
-      // Loop through fileInputs and upload each file
+      const storageRef = ref(storage, `/Healthcare/${user.uid}`);
       for (const input of fileInputs) {
         if (input && input.file) {
           const fileRef = ref(storageRef, input.file.name);
           await uploadBytes(fileRef, input.file);
         }
       }
-
       console.log("Files uploaded to Firebase Storage!");
-
-      // Generate QR code data
       const files = await listAll(storageRef);
       const newImageUrls = await Promise.all(
         files.items.map((item) => getDownloadURL(item))
       );
-      setQrCodeData(JSON.stringify(newImageUrls));
-      setImageUrls(newImageUrls); // Set the image URLs for later use
+      const encodedImageUrls = newImageUrls.map((url) =>
+        encodeURIComponent(url)
+      );
+      setQrCodeData(
+        `https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
+        //`http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+
+      );
+      setImageUrls(newImageUrls);
+      console.log(newImageUrls);
     } else {
       console.error("User not authenticated.");
     }
   };
 
-  // ... (rest of the code)
+  console.log(qrCodeData);
 
   return (
     <div className="main">
@@ -119,7 +113,7 @@ export const HealthCare = () => {
           <QRCode value={qrCodeData} />
         </div>
       )}
-      {/* {imageUrls.length > 0 && <ImageGallery imageUrls={imageUrls} />} */}
     </div>
   );
 };
+
