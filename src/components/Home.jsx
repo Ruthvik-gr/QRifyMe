@@ -7,80 +7,67 @@ import "../Styles/homepage.css";
 export const Home = () => {
   return (
     <div className="app">
-    <section className="bg"></section>
+      <section className="bg"></section>
 
-    <div className="container">
-      <div className="Card1">
+      <div className="container">
         <div className="Card1">
-          <Card className="Card1">
-            <Card.Img
-              className="img"
-              variant="top"
-              src="\src\assets\invest.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Invest in renewable energy</Card.Title>
-              <Card.Text>
-                we unite investors with cutting-edge renewable energy projects.
-                Explore project details, expected returns, and associated risks.
-                Your investment not only yields profits but accelerates the
-                shift to sustainable energy. Join us in powering
-                a greener future!
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="Card1">
+            <Card className="Card1">
+              <Card.Img
+                className="img"
+                variant="top"
+                src="\src\assets\healthcare.jpeg"
+              />
+              <Card.Body>
+                <Card.Title>Healthcare Documents</Card.Title>
+                <Card.Text>
+                  Your health information at your fingertips. Store medical records, prescriptions, and insurance details securely, ensuring you have access to important healthcare information whenever and wherever you need it, all accessible via QR code.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
-      </div>
 
-      <div className="Card2">
         <div className="Card2">
-          <Card className="Card2">
-            <Card.Img
-              className="img"
-              variant="top"
-              src="\src\assets\marketplace.jpg"
-              width="300"
-              height="400"
-            />
-            <Card.Body>
-              <Card.Title>Renewable Energy Marketplace</Card.Title>
-              <Card.Text>
-                your premier online destination bridging renewable energy
-                producers and consumers. Explore a variety of clean energy
-                options, easily select and agree on energy plans. Our
-                transparent platform fosters efficient transactions, directly
-                connecting suppliers with eco-conscious users. Power your life
-                sustainably with us!
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="Card2">
+            <Card className="Card2">
+              <Card.Img
+                className="img"
+                variant="top"
+                src="\src\assets\automobile.jpeg"
+                width="300"
+                height="400"
+              />
+              <Card.Body>
+                <Card.Title>Automobiles Documents</Card.Title>
+                <Card.Text>
+                  Keep track of your vehicles effortlessly. Store registration papers, maintenance records, and insurance documents securely, all accessible via QR code for easy retrieval whenever you need them.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
-      </div>
-      <div className="Card3">
         <div className="Card3">
-          <Card className="Card3">
-            <Card.Img
-              className="img"
-              variant="top"
-              src="\src\assets\community.jpg"
-              height="400"
-              width="300"
-            />
-            <Card.Body>
-              <Card.Title>Community Energy Sharing</Card.Title>
-              <Card.Text>
-                where communities come together to share excess renewable
-                energy. Our web-based platform facilitates transparent energy
-                transactions, fostering collaboration among members. Join us in
-                building a sustainable future by harnessing the power of
-                community energy sharing.
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="Card3">
+            <Card className="Card3">
+              <Card.Img
+                className="img"
+                variant="top"
+                src="\src\assets\student.jpeg"
+                height="400"
+                width="300"
+              />
+              <Card.Body>
+                <Card.Title>Student Documents</Card.Title>
+                <Card.Text>
+                  Manage and access your student records with ease, all accessible through a convenient QR code. From enrollment forms to academic transcripts, keep all your essential education documents organized in one place.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 
