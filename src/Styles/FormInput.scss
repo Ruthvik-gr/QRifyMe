@@ -50,7 +50,7 @@
 
   .PlusBtn,
   .SubmitBtn {
-    width: 100px;
+
     /* Adjust button width as needed */
     height: 40px;
     /* Adjust button height as needed */
@@ -71,7 +71,7 @@
   }
 
   .PlusBtn {
-    background-color: #007bff;
+    background-color: black;
     /* Adjust button background color as needed */
     margin: 20px;
   }
@@ -81,61 +81,24 @@
     margin: 20px;
     /* Adjust button background color as needed */
   }
+
+  .FetchBtn {
+    background-color: #007bff;
+    margin: 20px;
+  }
 }
 
+// @media (max-width: 576px) {
 
-
-
-
-
-
-// .main {
-//   position: relative;
-//   height: 100%-8%;
-//   background-image: url("../assets/bg.jpg");
-//   background-size: cover;
-//   background-position: center;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-//   h1 {
-//     margin-top: 20px;
-//     color: aliceblue;
+//   h1,
+//   h2 {
+//     font-size: 1.2rem; // Further decrease font size for headings on phones
 //   }
 
 //   .PlusBtn,
 //   .SubmitBtn {
-//     position: absolute;
-//     bottom: 20px;
-//     width: 100px;
-//     height: 40px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     cursor: pointer;
-//     border: none;
-//     border-radius: 5px;
-//     font-size: 1.2rem;
-//     color: white;
-//     transition: background-color 0.3s ease;
-
-//     &:hover {
-//       background-color: rgba(0, 0, 0, 0.5);
-//       /* Adjust hover background color as needed */
-//     }
-//   }
-
-//   .PlusBtn {
-//     left: 20px;
-//     background-color: #007bff;
-//   }
-
-//   .SubmitBtn {
-//     right: 20px;
-//     /* Adjust right position as needed */
-//     background-color: #28a745;
-//     /* Adjust button background color as needed */
+//     width: 80px; // Decrease button size for phones
+//     height: 30px;
+//     font-size: 1rem; // Decrease font size for buttons on phones
 //   }
 // }

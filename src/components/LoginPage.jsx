@@ -38,7 +38,17 @@ export const LoginPage = ({ setIsAuth }) => {
   };
 
   return (
-    <div className="signin-page">
+    <div className="signin-page"
+      style={{
+        margin: "30px",
+        display: "flex",
+        // flex- wrap: wrap;
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column"
+      }}
+    >
+
       <h1 className="heading">Sign in with Google</h1>
       <button className="btn btn-primary" id="btn" onClick={signInWithGoogle}>
         Sign in with Google

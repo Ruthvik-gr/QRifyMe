@@ -2,7 +2,7 @@
   background-image: url("../assets/logo3.png");
   height: 92vh;
   max-width: 100%;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -41,4 +41,25 @@
 
 button {
   grid-column: 2;
+}
+
+@media (max-width: 576px) {
+  .bg {
+    height: 30vh;
+  }
+  .Card1,
+  .Card2,
+  .Card3 {
+    width: 100%;
+
+    .but {
+      grid-template-columns: auto;
+      justify-content: center;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
 }
