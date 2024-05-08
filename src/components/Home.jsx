@@ -16,7 +16,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="/src/assets/healthcare.jpeg"
+                src="https://th.bing.com/th/id/OIG3.bcHrDXEJuWjQZWw77zdH?w=270&h=270&c=6&r=0&o=5&dpr=1.3&pid=ImgGn"
               />
               <Card.Body>
                 <Card.Title>Healthcare Documents</Card.Title>
@@ -34,7 +34,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="/src/assets/automobile.jpeg"
+                src="https://th.bing.com/th/id/OIG3.wvfBURQ2EhIdJZ4VPIrE?w=270&h=270&c=6&r=0&o=5&dpr=1.3&pid=ImgGn"
                 width="300"
                 height="400"
               />
@@ -53,7 +53,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="/src/assets/student.jpeg"
+                src="https://th.bing.com/th/id/OIG3.nUO6cbOcCrZOwuDSvF.0?w=270&h=270&c=6&r=0&o=5&dpr=1.3&pid=ImgGn"
                 height="400"
                 width="300"
               />
