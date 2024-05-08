@@ -60,8 +60,8 @@ export const Studentdetails = () => {
                 encodeURIComponent(url)
             );
             setQrCodeData(
-                //`https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
-                `http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
+                `https://qrifyme.netlify.app/imagegallery?data=[${encodedImageUrls.join(",")}]`
+                //`http://localhost:5173/imagegallery?data=[${encodedImageUrls.join(",")}]`
 
             );
             setImageUrls(newImageUrls);
@@ -75,7 +75,7 @@ export const Studentdetails = () => {
 
     return (
         <div className="main">
-            <h1>Studentdetails</h1>
+            <h1>Student Details</h1>
             <div>
                 {fileInputs.map((input, index) => (
                     <div key={index}>
@@ -97,16 +97,18 @@ export const Studentdetails = () => {
                     </div>
                 ))}
             </div>
-            <Button className="PlusBtn" onClick={handleAddFileInput}>
-                +
-            </Button>
-            <Button
-                className="SubmitBtn"
-                as="input"
-                type="submit"
-                value="Submit"
-                onClick={handleUpload}
-            />
+            <div className="buttons-container">
+                <Button className="PlusBtn" onClick={handleAddFileInput}>
+                    +
+                </Button>
+                <Button
+                    className="SubmitBtn"
+                    as="input"
+                    type="submit"
+                    value="Submit"
+                    onClick={handleUpload}
+                />
+            </div>
             {qrCodeData && (
                 <div style={{ marginTop: "20px", marginLeft: "20px" }}>
                     <h2>QR Code:</h2>

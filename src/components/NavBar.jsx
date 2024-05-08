@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export const NavBar = ({ isAuth, signUserOut }) => (
@@ -10,6 +9,7 @@ export const NavBar = ({ isAuth, signUserOut }) => (
     expand="lg"
     className="bg-body-tertiary"
     id="container"
+    style={{ fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif" }}
   >
     <Container>
       <Navbar.Brand as={Link} to="/">

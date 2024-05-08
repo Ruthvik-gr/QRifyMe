@@ -75,7 +75,7 @@ export const HealthCare = () => {
 
   return (
     <div className="main">
-      <h1>HealthCare</h1>
+      <h1>Health Care</h1>
       <div>
         {fileInputs.map((input, index) => (
           <div key={index}>
@@ -97,16 +97,18 @@ export const HealthCare = () => {
           </div>
         ))}
       </div>
-      <Button className="PlusBtn" onClick={handleAddFileInput}>
-        +
-      </Button>
-      <Button
-        className="SubmitBtn"
-        as="input"
-        type="submit"
-        value="Submit"
-        onClick={handleUpload}
-      />
+      <div className="buttons-container">
+        <Button className="PlusBtn" onClick={handleAddFileInput}>
+          +
+        </Button>
+        <Button
+          className="SubmitBtn"
+          as="input"
+          type="submit"
+          value="Submit"
+          onClick={handleUpload}
+        />
+      </div>
       {qrCodeData && (
         <div style={{ marginTop: "20px", marginLeft: "20px" }}>
           <h2>QR Code:</h2>

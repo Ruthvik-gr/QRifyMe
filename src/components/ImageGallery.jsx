@@ -8,7 +8,7 @@ export const ImageGallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const urlParams = new URLSearchParams(location.search);
+        const urlParams = new URLSearchParams(location.search);3
         const dataParam = urlParams.get("data");
         console.log("dataParam:", dataParam);
 

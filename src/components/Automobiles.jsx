@@ -75,8 +75,8 @@ export const Automobiles = () => {
 
   return (
     <div className="main">
-      <h1>Automobiles</h1>
-      <div>
+      <h1>AutoMobiles</h1>
+      <div className="choosefile">
         {fileInputs.map((input, index) => (
           <div key={index}>
             <input
@@ -97,16 +97,18 @@ export const Automobiles = () => {
           </div>
         ))}
       </div>
-      <Button className="PlusBtn" onClick={handleAddFileInput}>
-        +
-      </Button>
-      <Button
-        className="SubmitBtn"
-        as="input"
-        type="submit"
-        value="Submit"
-        onClick={handleUpload}
-      />
+      <div className="buttons-container">
+        <Button className="PlusBtn" onClick={handleAddFileInput}>
+          +
+        </Button>
+        <Button
+          className="SubmitBtn"
+          as="input"
+          type="submit"
+          value="Submit"
+          onClick={handleUpload}
+        />
+      </div>
       {qrCodeData && (
         <div style={{ marginTop: "20px", marginLeft: "20px" }}>
           <h2>QR Code:</h2>

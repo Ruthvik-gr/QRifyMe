@@ -3,6 +3,14 @@
   flex-wrap: wrap; // Allow images to wrap to the next line if needed
   justify-content: center; // Center the images horizontally within the container
   align-items: center; // Center the images vertically within the container
+  flex-direction: column;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-image: url("../assets/bg.jpg");
+
+  h1 {
+    margin-top: 20px;
+    color: aliceblue;
+  }
 
   .imagecontainer {
     width: 200px; // Fixed width for each image container
@@ -15,6 +23,7 @@
     img {
       max-width: 100%; // Make the image fill the container horizontally while maintaining aspect ratio
       max-height: 100%; // Make the image fill the container vertically while maintaining aspect ratio
+      border-radius: 15px;
     }
   }
 }
