@@ -16,7 +16,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="\src\assets\healthcare.jpeg"
+                src="/src/assets/healthcare.jpeg"
               />
               <Card.Body>
                 <Card.Title>Healthcare Documents</Card.Title>
@@ -34,7 +34,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="\src\assets\automobile.jpeg"
+                src="/src/assets/automobile.jpeg"
                 width="300"
                 height="400"
               />
@@ -53,7 +53,7 @@ export const Home = () => {
               <Card.Img
                 className="img"
                 variant="top"
-                src="\src\assets\student.jpeg"
+                src="/src/assets/student.jpeg"
                 height="400"
                 width="300"
               />
