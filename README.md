@@ -19,7 +19,7 @@ QRifyMe is a web-based document management solution leveraging QR code technolog
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/QRifyMe.git
+   git clone https://github.com/Ruthvik-gr/QRifyMe.git
    ```
 2. **Navigate to the project directory**:
    ```bash
